@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>shoplex</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f3f3f3;
+}
+
+/* Navbar */
+
+.navbar{
+background:#131921;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+}
+
+.navbar a{
+color:white;
+margin-left:15px;
+text-decoration:none;
+cursor:pointer;
+}
+
+/* Login Box */
+
+.login-box{
+background:white;
+padding:30px;
+width:300px;
+margin:50px auto;
+text-align:center;
+border-radius:5px;
+}
+
+/* Products */
+
+.products{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+padding:20px;
+display:none; /* hidden until login */
+}
+
+.product{
+background:white;
+padding:20px;
+text-align:center;
+border-radius:5px;
+}
+
+.product img{
+width:180px;
+height:180px;
+object-fit:cover;
+}
+
+button{
+background:#ffd814;
+border:none;
+padding:10px;
+cursor:pointer;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<div class="navbar">
+<h2>SHOPLEX</h2>
+
+<div>
+<a onclick="showLogin()">Login</a>
+<a href="cart.html">Cart 🛒</a>
+<a href="contact.html">Contact</a>
+<a onclick="logout()">Logout</a>
+</div>
+</div>
+
+<!-- Login Section -->
+
+<div class="login-box" id="loginBox">
+
+<h2>Login</h2>
+
+<input type="text" id="email" placeholder="Email"><br>
+<input type="password" id="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+</div>
+
+<!-- Products Section -->
+
+<div class="products" id="productSection">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e">
+<h3>Headphones</h3>
+<p>$50</p>
+<button onclick="add('Headphones',50)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+<h3>Laptop</h3>
+<p>$900</p>
+<button onclick="add('Laptop',900)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://m.media-amazon.com/images/I/71UD0DCIVSL._AC_UF1000,1000_QL80_.jpg">
+<h3>Camera</h3>
+<p>$300</p>
+<button onclick="add('Camera',300)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+<h3>Smartphone</h3>
+<p>$600</p>
+<button onclick="add('Smartphone',600)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Eg9OwKfsgmNx5RtcPq5X7Fn9Tl3La4Kfsw&s">
+<h3>Speaker</h3>
+<p>$80</p>
+<button onclick="add('Speaker',80)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXCK3?wid=4000&hei=4000&fmt=jpeg&qlt=90&.v=1730320444782">
+<h3>Keyboard</h3>
+<p>$40</p>
+<button onclick="add('Keyboard',40)">Add to Cart</button>
+</div>
+
+</div>
+
+<!-- JavaScript -->
+
+<script>
+
+// Show login manually
+function showLogin(){
+document.getElementById("loginBox").style.display="block"
+document.getElementById("productSection").style.display="none"
+}
+
+// Login function
+function login(){
+
+let email=document.getElementById("email").value
+let password=document.getElementById("password").value
+
+if(email=="" || password==""){
+document.getElementById("msg").innerHTML="Enter Email and Password"
+}
+else{
+localStorage.setItem("loggedIn","true")
+
+document.getElementById("loginBox").style.display="none"
+document.getElementById("productSection").style.display="grid"
+}
+
+}
+
+// Auto check login on page load
+if(localStorage.getItem("loggedIn") === "true"){
+document.getElementById("loginBox").style.display="none"
+document.getElementById("productSection").style.display="grid"
+}
+
+// Logout
+function logout(){
+localStorage.removeItem("loggedIn")
+location.reload()
+}
+
+// Add to Cart
+function add(name, price){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || []
+
+cart.push({name:name, price:price})
+
+localStorage.setItem("cart", JSON.stringify(cart))
+
+alert(name + " added to cart")
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact Us</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f3f3f3;
+text-align:center;
+padding:30px;
+}
+
+.contact-box{
+background:white;
+padding:30px;
+width:350px;
+margin:auto;
+border-radius:5px;
+}
+
+input,textarea{
+width:90%;
+padding:10px;
+margin:10px;
+}
+
+button{
+padding:10px 20px;
+background:#febd69;
+border:none;
+cursor:pointer;
+}
+
+.info{
+background:white;
+padding:20px;
+margin:20px auto;
+width:350px;
+border-radius:5px;
+text-align:left;
+}
+
+h3{
+color:#131921;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Contact Form -->
+
+<div class="contact-box">
+
+<h2>Contact Us</h2>
+
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Email">
+<textarea placeholder="Your Message"></textarea>
+
+<button onclick="send()">Send</button>
+
+<p id="msg"></p>
+
+</div>
+
+<!-- Helpline Info -->
+
+<div class="info">
+
+<h3>📞 Helpline Number</h3>
+<p>+91 98765 43210</p>
+
+</div>
+
+<!-- Refund Steps -->
+
+<div class="info">
+
+<h3>🔄 Refund Process</h3>
+
+<p>1. Go to Products page</p>
+<p>2. Open your Cart</p>
+<p>3. Click "Remove" on the product</p>
+<p>4. Contact support using this page</p>
+<p>5. Refund will be processed in 3-5 days</p>
+
+</div>
+
+<script>
+
+function send(){
+document.getElementById("msg").innerHTML="Message Sent Successfully"
+}
+
+</script>
+
+</body>
+</html>
